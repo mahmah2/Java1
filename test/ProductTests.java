@@ -45,6 +45,6 @@ public class ProductTests {
     @Test
     public void TestProductCreation() {
         Product product = new Product(1, "APF", "Automatic Paper Feed", new BigDecimal(50.66));
-        Assert.assertEquals(2, product.getId());
+        Assert.assertEquals(1, product.getId());
     }
 }
