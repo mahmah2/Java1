@@ -5,6 +5,7 @@
  */
 package Van.Product.Servlet;
 
+import Van.Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;

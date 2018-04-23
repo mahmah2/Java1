@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import Van.Product.Servlet.Product;
+import Van.Model.Product;
 import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
