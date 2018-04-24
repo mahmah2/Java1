@@ -1,0 +1,32 @@
+<div ng-controller="productController as ctrl">
+
+    <md-grid-list layout-margin flex
+				  md-cols-sm="1"
+				  md-cols-md="2"
+				  md-cols-gt-md="4"
+				  md-row-height="200px"
+				  md-gutter="10px">
+		<md-grid-tile ng-repeat="p in ctrl.products">
+			<md-card layout-fill md-padding>
+				<md-card-title >
+					<md-card-title-text>
+						<span class="md-headline"><span class="currency-unpaid">${{p.price}}</span> {{p.id}}</span>
+						<span class="md-subhead">{{p.name}}</span>
+						<span class="md-subhead" style="font-style:italic">{{p.description}}</span>
+					</md-card-title-text>
+					<!--<md-card-title-media>
+						<div class="md-media-sm card-media"></div>
+					</md-card-title-media>-->
+					<!--<md-card-content style="border-left: 1px solid #7B68EE;">
+						<p></p>
+					</md-card-content>-->
+				</md-card-title>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button ng-disabled=" p.price == 0 " class="md-raised md-primary">View</md-button>
+				</md-card-actions>
+			</md-card>
+
+		</md-grid-tile>
+    </md-grid-list>
+
+</div>

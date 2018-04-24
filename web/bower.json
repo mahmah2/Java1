@@ -1,0 +1,23 @@
+{
+  "name": "web",
+  "authors": [
+    "Amir <mahfoozi@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "BC",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.10",
+    "angular-ui-router": "^1.0.15",
+    "angular-material": "^1.1.8"
+  }
+}

@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>First Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Van</title>
+
+        <link rel="stylesheet" type="text/css" href="BC\angular-material\angular-material.css" />
+        <link rel="stylesheet" type="text/css" href="CSS\Main.css" />
+</head>
+<body ng-app="VanApp" ng-controller="MainController as ctrl">
+
+		<!--<a ui-sref="/">Home</a>
+		<a ui-sref="login">Login</a>
+		<a ui-sref="about">About</a>-->
+
+		<md-toolbar class="md-raised">
+			<div class="md-toolbar-tools">
+				<h2 flex md-truncate ng-bind="ctrl.AppName"></h2>
+
+				<md-button aria-label="Home" class="md-fab md-raised" ui-sref="/">&#x1F3E0;</md-button>
+				<md-button aria-label="Product" class="md-fab md-raised" ui-sref="product">Product</md-button>
+				
+			</div>
+		</md-toolbar>
+
+
+		<md-progress-linear md-mode="indeterminate" ng-show="ctrl.Busy" ></md-progress-linear>
+
+		<ui-view>
+			<h2>Loading...</h2>
+		</ui-view>
+
+		<script src="BC\angular\angular.js"></script>
+		<script src="BC\angular-ui-router\release\angular-ui-router.js"></script>
+
+		<script src="BC\angular-animate\angular-animate.min.js"></script>
+		<script src="BC\angular-aria\angular-aria.min.js"></script>
+		<script src="BC\angular-messages\angular-messages.min.js"></script>
+		<script src="BC\angular-material\angular-material.min.js"></script>
+
+                <script src="JS\App.js"></script>
+		<script src="JS\Home\homeController.js"></script>
+                <script src="JS\Product\productController.js"></script>
+		<script src="JS\Product\productService.js"></script>
+
+	</body>
+	</html>

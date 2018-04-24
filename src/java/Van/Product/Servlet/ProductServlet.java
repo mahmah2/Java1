@@ -6,6 +6,9 @@
 package Van.Product.Servlet;
 
 import Van.Model.Product;
+import Van.Model.Student;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -33,21 +36,21 @@ public class ProductServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void showJPS(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        
+            List<Product> products =  new ArrayList<Product>();
+            products.add(new Product(1, "EGR", "Electronic Gas Releaser", new BigDecimal(20.5)));
+            products.add(new Product(10, "ECU", "Electronic Control Unit", new BigDecimal(59.00)));
+            products.add(new Product(50, "AGV", "Automatic Guided Vehicle", new BigDecimal(30000.00)));
+
+            products.get(0).setId(7);
+
+            request.setAttribute("products", products);
+            request.getRequestDispatcher("/JSP/Product/ProductList.jsp").forward(request, response);
+        
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,16 +65,26 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> products =  new ArrayList<Product>();
-        products.add(new Product(1, "EGR", "Electronic Gas Releaser", new BigDecimal(20.5)));
-        products.add(new Product(10, "ECU", "Electronic Control Unit", new BigDecimal(59.00)));
-        products.add(new Product(50, "AGV", "Automatic Guided Vehicle", new BigDecimal(30000.00)));
         
-        products.get(0).setId(7);
-                
-                
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("/JSP/Product/ProductList.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            List<Product> products =  new ArrayList<Product>();
+            products.add(new Product(1, "EGR", "Electronic Gas Releaser", new BigDecimal(20.5)));
+            products.add(new Product(10, "ECU", "Electronic Control Unit", new BigDecimal(59.00)));
+            products.add(new Product(50, "AGV", "Automatic Guided Vehicle", new BigDecimal(30000.00)));
+            
+            GsonBuilder builder = new GsonBuilder(); 
+            Gson gson = builder.create(); 
+
+            String jsonString = gson.toJson(products); 
+
+            System.out.println(jsonString); //web server output   
+            out.println(jsonString);  
+            out.flush();
+        }
+        
     }
 
     /**
@@ -85,7 +98,7 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        showJPS(request, response);
     }
 
     /**
