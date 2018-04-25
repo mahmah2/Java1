@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author User
+ * @WebService()
+ * @WebMethod
+ * @RolesAllowed("basicUser")
  */
+
+//@DeclareRoles("APIUser")
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 
@@ -110,5 +116,5 @@ public class ProductServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }
